@@ -6,7 +6,7 @@ public class GA {
         // TODO Auto-generated method stub
 
         //READ PROBLEM DATA  PROBLEM Instance
-        System.out.println("Popultaion size:" + popSize + "; " + "Number of iterations: " + numberOfIterations);
+        System.out.println("Popultaion size: " + popSize + " ; " + "Number of iterations: " + numberOfIterations);
 
         Individual[] pop        = new Individual[popSize];
         Individual[] children   = new Individual[popSize];
