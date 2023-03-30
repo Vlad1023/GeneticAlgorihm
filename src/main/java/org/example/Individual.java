@@ -5,9 +5,9 @@ public class Individual {
     int   fitness; // SOLUTION-QUALITY
     double p_MUT;  //MUTATION-PROBABILITY of EACH BIT
 
-    public Individual(){
+    public Individual(int popSize){
         //bits    = new int[Daten.anzahlProjekte];
-        bits    = new int[40];
+        bits    = new int[popSize];
         p_MUT   = 1./bits.length;
     }
 
@@ -24,16 +24,34 @@ public class Individual {
 
 
     public static void crossover(Individual papa, Individual mama, Individual son, Individual daughter){
-        int crosspoint = (int)(Math.random()*papa.bits.length);
-
-
-        for(int i=0;i<crosspoint;i++){
-            son.bits[i]      = papa.bits[i];
-            daughter.bits[i] = mama.bits[i];
+        int crosspointLower = (int)(Math.random()*papa.bits.length);
+        int crosspointUpper = (int)(Math.random()*papa.bits.length);
+        if(crosspointLower > crosspointUpper){
+            int temp = crosspointLower;
+            crosspointLower = crosspointUpper;
+            crosspointUpper = temp;
         }
-        for(int i=crosspoint;i<papa.bits.length;i++){
-            son.bits[i]      = mama.bits[i];
-            daughter.bits[i] = papa.bits[i];
+
+        //first child
+        for(int i=0;i<crosspointLower;i++){
+            son.bits[i]   = papa.bits[i];
+        }
+        for(int i=crosspointLower;i<crosspointUpper;i++){
+            son.bits[i]    = mama.bits[i];
+        }
+        for(int i=crosspointUpper;i<papa.bits.length;i++){
+            son.bits[i]   = papa.bits[i];
+        }
+
+        //second child
+        for(int i=0;i<crosspointLower;i++){
+            daughter.bits[i]   = mama.bits[i];
+        }
+        for(int i=crosspointLower;i<crosspointUpper;i++){
+            daughter.bits[i]    = papa.bits[i];
+        }
+        for(int i=crosspointUpper;i<papa.bits.length;i++){
+            daughter.bits[i]   = mama.bits[i];
         }
     }
 

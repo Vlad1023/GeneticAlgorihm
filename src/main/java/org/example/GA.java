@@ -6,15 +6,15 @@ public class GA {
         // TODO Auto-generated method stub
 
         //READ PROBLEM DATA  PROBLEM Instance
-
+        System.out.println("Popultaion size:" + popSize + "; " + "Number of iterations: " + numberOfIterations);
 
         Individual[] pop        = new Individual[popSize];
         Individual[] children   = new Individual[popSize];
-        Individual best         = new Individual();
+        Individual best         = new Individual(popSize);
 
         //1. Generate START-POPULATION
         for(int i=0;i<pop.length;i++){
-            pop[i] = new Individual();
+            pop[i] = new Individual(popSize);
             pop[i].initialize();
             pop[i].fitness();
         }
@@ -38,8 +38,8 @@ public class GA {
                 int parentIndex1 = selection(pop);
                 int parentIndex2 = selection(pop);
 
-                children[i]      = new Individual();
-                children[i+1]    = new Individual();
+                children[i]      = new Individual(popSize);
+                children[i+1]    = new Individual(popSize);
 
                 Individual.crossover(pop[parentIndex1], pop[parentIndex2], children[i], children[i+1]);
 

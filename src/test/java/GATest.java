@@ -8,7 +8,7 @@ public class GATest {
 
     @ParameterizedTest
     @CsvSource({
-            "40, 1000",
+            "100, 3",
             "40, 5000",
             "40, 10000"
     })
