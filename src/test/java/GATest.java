@@ -6,13 +6,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class GATest {
 
-    @ParameterizedTest
+
+    @ParameterizedTest(name = "PopulationSize: {0}, NumberOfIterations: {1}")
     @CsvSource({
-            "100, 3",
+            "100, 5",
             "42, 5000",
             "40, 10000"
     })
-    public void testOutputForParameters(int popSize, int numberOfIterations) {
+    public void testGenericAlgorithm(int popSize, int numberOfIterations) {
         GA.LaunchAlgorithm(popSize, numberOfIterations);
     }
 }
