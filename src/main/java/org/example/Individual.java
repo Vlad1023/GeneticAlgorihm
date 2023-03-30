@@ -13,11 +13,14 @@ public class Individual {
 
 
     public void mutation(){
-        for(int i=0;i<bits.length;i++){
+        for(int i=1;i<bits.length;i++){
             double p = Math.random();//[0;1)
             if(p < p_MUT){
-                if(this.bits[i] == 0)this.bits[i] = 1;
-                else                 this.bits[i] = 0;
+                if(this.bits[i] == 0){
+                   int bitToSwap = this.bits[i - 1];
+                   this.bits[i - 1] = this.bits[i];
+                   this.bits[i] = bitToSwap;
+                }
             }
         }
     }
